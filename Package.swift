@@ -16,9 +16,11 @@ let package = Package(
             .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.4.1"))
         ],
     targets: [
-        .target(name: "WebstoryzPackage", dependencies: [
-            .target(name: "Alamofire")
-        ],
+        .target(
+            name: "WebstoryzPackage",
+            dependencies: [
+                "Alamofire"
+            ],
         path: "WebstoryzSDK"),
     ]
 )
