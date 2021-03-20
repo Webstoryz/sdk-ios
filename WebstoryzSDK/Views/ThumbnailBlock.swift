@@ -55,11 +55,11 @@ internal struct ThumbnailBlock: View {
         }
     }
     
-    
+    ///170 is max heigth of thumb+text
     @ViewBuilder
     var body: some View {
         if self.model.loading {
-            ViewBuilder.buildBlock(ActivityIndicator(isAnimating: .constant(true), style: .medium).background(Color.white))
+            ViewBuilder.buildBlock(ActivityIndicator(isAnimating: .constant(true), style: .medium).background(Color.white).frame(height: 172))
         } else {
             ViewBuilder.buildBlock(
                 GeometryReader { geometry in
@@ -131,6 +131,7 @@ internal struct ThumbnailBlock: View {
                         }
                     }
                 .background(Color.white)
+                .frame(height: 170)
                 )
             }
     }

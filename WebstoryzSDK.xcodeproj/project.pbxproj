@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B12FB202605E64000C19D28 /* OptionalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FB1F2605E64000C19D28 /* OptionalButton.swift */; };
 		8B3AF81025CF2885006F7DFE /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3AF80F25CF2885006F7DFE /* StoryView.swift */; };
 		8B3AF81C25CF348F006F7DFE /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3AF81B25CF348F006F7DFE /* StoryModel.swift */; };
 		8B3BDE4625D176D700D5BC5E /* CubeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3BDE4525D176D700D5BC5E /* CubeNavigation.swift */; };
@@ -101,6 +102,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B12FB1F2605E64000C19D28 /* OptionalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalButton.swift; sourceTree = "<group>"; };
 		8B3AF80F25CF2885006F7DFE /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		8B3AF81B25CF348F006F7DFE /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
 		8B3BDE4525D176D700D5BC5E /* CubeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeNavigation.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				8B8C6F3625D6F30C009AAAFC /* WebView.swift */,
 				8B8C6F3C25D7EFAB009AAAFC /* ImageLoader.swift */,
 				8B8C6F4825D82B27009AAAFC /* AnyShape.swift */,
+				8B12FB1F2605E64000C19D28 /* OptionalButton.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				8B8EDFB225CC7D2500ABE440 /* SDK.swift in Sources */,
 				8B8EE02F25CD277D00ABE440 /* ThumbnailBlock.swift in Sources */,
 				8B5C90DD25D1C69400F9A86A /* CubeNavigatorHelper.swift in Sources */,
+				8B12FB202605E64000C19D28 /* OptionalButton.swift in Sources */,
 				8B3BDE4625D176D700D5BC5E /* CubeNavigation.swift in Sources */,
 				8B8EE03825CD28A100ABE440 /* StoryThumbnailForm.swift in Sources */,
 				8B3AF81025CF2885006F7DFE /* StoryView.swift in Sources */,
@@ -760,8 +764,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZYZ28BV255;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -785,8 +791,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZYZ28BV255;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

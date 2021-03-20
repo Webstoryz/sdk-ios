@@ -28,39 +28,41 @@ internal struct StoryThumbnail: View {
     }
     
     var body: some View {
-        VStack {
-            form.overlay
-                .foregroundColor(WebstoryzColors.borderColor)
-                .frame(width: form.width+5, height: form.heigth+5, alignment: .center)
-                .cornerRadius(form.cornerRadius)
-                .overlay(form.overlay
-                            .frame(width: form.width+3, height: form.heigth+3, alignment: .center)
-                            .cornerRadius(form.cornerRadius)
-                            .foregroundColor(.white)
-                            .overlay(
-                                ZStack {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width:form.width, height:form.heigth)
-                                    .clipShape(form.shape())
+        OptionalButton(
+            child: AnyView(
+                VStack {
+                    form.overlay
+                        .foregroundColor(WebstoryzColors.borderColor)
+                        .frame(width: form.width+5, height: form.heigth+5, alignment: .center)
+                        .cornerRadius(form.cornerRadius)
+                        .overlay(form.overlay
+                                    .frame(width: form.width+3, height: form.heigth+3, alignment: .center)
                                     .cornerRadius(form.cornerRadius)
-                                    .onReceive(imageLoader.didChange) { data in
-                                        self.image = UIImage(data: data) ?? UIImage()
-                                    }
-                                    if form.captionInside {
-                                        Text(caption).foregroundColor(form.captionColor)
-                                    }
-                                }
-                            )
-                        )
-            if !form.captionInside {
-                Text(caption).foregroundColor(form.captionColor)
-            }
-        }.onTapGesture {
-            if isButton {
-                onPressed()
-            }
-        }
+                                    .foregroundColor(.white)
+                                    .overlay(
+                                        ZStack {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width:form.width, height:form.heigth)
+                                            .clipShape(form.shape())
+                                            .cornerRadius(form.cornerRadius)
+                                            .onReceive(imageLoader.didChange) { data in
+                                                self.image = UIImage(data: data) ?? UIImage()
+                                            }
+                                            if form.captionInside {
+                                                Text(caption).foregroundColor(form.captionColor)
+                                            }
+                                        }
+                                    )
+                                )
+                    if !form.captionInside {
+                        Text(caption).foregroundColor(form.captionColor)
+                    }
+                }
+            ),
+            isActive: isButton,
+            onPressed: onPressed
+        )
     }
 }
