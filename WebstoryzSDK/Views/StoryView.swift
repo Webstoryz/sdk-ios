@@ -26,27 +26,29 @@ struct StoryView: View {
     }
     
     var body: some View {
-        GeometryReader {    geometry in
-            CubeNavigator(pages: stories, helper: self.helper, containerSize: geometry.size) { story in
-                ZStack(
-                    alignment: Alignment(
-                        horizontal: HorizontalAlignment.leading,
-                        vertical: VerticalAlignment.top
-                    )
-                ) {
-                    WebView(request: URLRequest(url: URL(string: story.url!)!))
-                    Image(systemName: "xmark")
-                        .font(.system(size: 30))
-                        .offset(x: 20, y: 30)
-                        .onTapGesture {
-                            self.mode.wrappedValue.dismiss()
-                        }
-                }
+        NavigationView {
+            CubeNavigator(pages: stories, helper: self.helper, containerSize: UIScreen.main.bounds.size) { story in
+                    ZStack(
+                        alignment: Alignment(
+                            horizontal: HorizontalAlignment.leading,
+                            vertical: VerticalAlignment.top
+                        )
+                    ) {
+                        WebView(request: URLRequest(url: URL(string: story.url!)!))
+                        Image(systemName: "xmark")
+                            .font(.system(size: 30))
+                            .offset(x: 20, y: 30)
+                            .onTapGesture {
+                                self.mode.wrappedValue.dismiss()
+                            }
+                    }
+                .background(Color.black)
+                
             }
-            .background(Color.black)
-            
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarHidden(true)
         }
-        .navigationBarTitle("")
+        .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(true)
     }
     

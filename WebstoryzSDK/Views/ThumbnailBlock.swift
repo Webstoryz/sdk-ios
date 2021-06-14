@@ -67,7 +67,6 @@ internal struct ThumbnailBlock: View {
             ViewBuilder.buildBlock(ActivityIndicator(isAnimating: .constant(true), style: .medium).background(Color.white).frame(height: 172))
         } else {
             ViewBuilder.buildBlock(
-                GeometryReader { geometry in
                         VStack(alignment: .leading) {
                             if self.model.title != "" {
                                 Text(self.model.title)
@@ -83,7 +82,7 @@ internal struct ThumbnailBlock: View {
                                                 isActive: self.controller == nil,
                                                 destination: AnyView(StoryView(
                                                     startIndex: (model.thumbs.lastIndex(where: { val in return val.id == thumb.id }) ?? 0),
-                                                    screenSize: geometry.size.width,
+                                                    screenSize: UIScreen.main.bounds.width,
                                                     stories: self.model.thumbs
                                                 )),
                                                 child: AnyView(
@@ -107,35 +106,10 @@ internal struct ThumbnailBlock: View {
                                                         })
                                                 )
                                             )
-                                            
-//                                            NavigationLink (
-//                                                destination: StoryView(startIndex: (model.thumbs.lastIndex(where: { val in
-//                                                    return val.id == thumb.id
-//                                                }) ?? 0), screenSize: geometry.size.width, stories: self.model.thumbs)
-//                                            ) {
-//                                                StoryThumbnail(
-//                                                    form: model.form,
-//                                                    caption: thumb.title ?? "Null subtitle",
-//                                                    url: thumb.thumbUrl ?? "",
-//                                                    isButton: self.controller != nil,
-//                                                    onPressed: {
-//                                                        let viewCtr = UIHostingController(rootView: StoryView(startIndex: model.thumbs.lastIndex(where: { val in
-//                                                            return val.id == thumb.id
-//                                                        }) ?? 0, screenSize: 375, stories: model.thumbs ))
-//                                                        viewCtr.view.frame = self.controller!.view.bounds
-//                                                        viewCtr.view.translatesAutoresizingMaskIntoConstraints = false
-//                                                        viewCtr.didMove(toParent: self.controller)
-//                                                        controller?.view.addSubview(viewCtr.view)
-//                                                        controller?.addChild(viewCtr)
-//                                                        callback()
-//                                                    }
-//                                                )
-//                                            }
                                         }
                                     }
                                 }
                             )
-                        }
                     }
                 .background(Color.white)
                 .frame(height: 170)
