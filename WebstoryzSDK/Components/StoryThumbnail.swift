@@ -60,7 +60,7 @@ internal struct StoryThumbnail: View {
                                 )
                     if !form.captionInside {
                         Text(caption).styled(style: captionStyle)
-                            .frame(maxWidth: form.width +3)
+                            .frame(maxWidth: form.width+3)
                     }
                 }
             ),
