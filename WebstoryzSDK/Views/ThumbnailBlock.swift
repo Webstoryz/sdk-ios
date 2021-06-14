@@ -15,14 +15,19 @@ internal struct ThumbnailBlock: View {
     var key: String
     var controller: UIViewController?
     var callback: () -> Void?
+    var captionStyle, headerStyle: TextStyle
     
-    init(key: String) {
+    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle) {
+        self.captionStyle = captionStyle
+        self.headerStyle = headerStyle
         self.key = key
         self.callback =  { return }
         self.request()
     }
     
-    init(key: String,controller: UIViewController) {
+    init(key: String,controller: UIViewController, headerStyle: TextStyle, captionStyle: TextStyle) {
+        self.captionStyle = captionStyle
+        self.headerStyle = headerStyle
         self.key = key
         self.controller = controller
         self.callback =  { return }
@@ -66,6 +71,7 @@ internal struct ThumbnailBlock: View {
                         VStack(alignment: .leading) {
                             if self.model.title != "" {
                                 Text(self.model.title)
+                                    .styled(style: headerStyle)
                             }
                             ScrollView(
                                 .horizontal,
@@ -86,6 +92,7 @@ internal struct ThumbnailBlock: View {
                                                         caption: thumb.title ?? "",
                                                         url: thumb.thumbUrl ?? "",
                                                         isButton: self.controller != nil,
+                                                        captionStyle: self.captionStyle,
                                                         onPressed: {
                                                             
                                                             let viewCtr = UIHostingController(rootView: StoryView(startIndex: model.thumbs.lastIndex(where: { val in

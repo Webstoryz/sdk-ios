@@ -11,9 +11,13 @@ import Combine
 ///view that shows storys list
 struct StoryView: View {
     
+    
+    
     let stories: [StoryModel]
     var helper = CubeNavigatorHelper()
     let delay = 0.4
+    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     init(startIndex: Int, screenSize: CGFloat, stories: [StoryModel]) {
         self.helper.currentScreenIndex = startIndex
@@ -24,7 +28,20 @@ struct StoryView: View {
     var body: some View {
         GeometryReader {    geometry in
             CubeNavigator(pages: stories, helper: self.helper, containerSize: geometry.size) { story in
-                WebView(request: URLRequest(url: URL(string: story.url!)!))
+                ZStack(
+                    alignment: Alignment(
+                        horizontal: HorizontalAlignment.leading,
+                        vertical: VerticalAlignment.top
+                    )
+                ) {
+                    WebView(request: URLRequest(url: URL(string: story.url!)!))
+                    Image(systemName: "xmark")
+                        .font(.system(size: 30))
+                        .offset(x: 20, y: 30)
+                        .onTapGesture {
+                            self.mode.wrappedValue.dismiss()
+                        }
+                }
             }
             .background(Color.black)
             

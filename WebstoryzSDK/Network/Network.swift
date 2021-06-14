@@ -24,12 +24,9 @@ class Network {
             }
             do {
                 let decoded = try JSONDecoder().decode(StoryResult.self, from: response.data!)
-                for stry in decoded.data!.stories {
-                    print(stry.duration!)
-                }
                 callback(decoded)
             } catch {
-                print("parsing error: \(error)")
+                print("")
             }
         })
     }

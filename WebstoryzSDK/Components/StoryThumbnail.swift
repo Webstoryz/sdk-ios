@@ -15,11 +15,13 @@ internal struct StoryThumbnail: View {
     var url: String
     var isButton: Bool
     var onPressed: () -> Void
+    var captionStyle: TextStyle
     @ObservedObject var imageLoader: ImageLoader
     @State var image: UIImage = UIImage()
     
-    init(form: StoryThumbnailForm, caption: String, url: String, isButton: Bool, onPressed: @escaping () -> Void) {
+    init(form: StoryThumbnailForm, caption: String, url: String, isButton: Bool,captionStyle: TextStyle, onPressed: @escaping () -> Void) {
         self.form = form
+        self.captionStyle = captionStyle
         self.caption = caption
         self.url = url
         self.imageLoader = ImageLoader(urlString: url)
@@ -51,13 +53,14 @@ internal struct StoryThumbnail: View {
                                                 self.image = UIImage(data: data) ?? UIImage()
                                             }
                                             if form.captionInside {
-                                                Text(caption).foregroundColor(form.captionColor)
+                                                Text(caption).styled(style: captionStyle)
                                             }
                                         }
                                     )
                                 )
                     if !form.captionInside {
-                        Text(caption).foregroundColor(form.captionColor)
+                        Text(caption).styled(style: captionStyle)
+                            .frame(maxWidth: form.width +3)
                     }
                 }
             ),

@@ -17,7 +17,6 @@ struct OptionalButton: View {
         if isActive {
             ViewBuilder.buildBlock(
                 child.onTapGesture {
-                    print("tapped")
                     onPressed()
                 }
             )

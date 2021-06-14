@@ -12,6 +12,7 @@
 		8B3AF81C25CF348F006F7DFE /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3AF81B25CF348F006F7DFE /* StoryModel.swift */; };
 		8B3BDE4625D176D700D5BC5E /* CubeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3BDE4525D176D700D5BC5E /* CubeNavigation.swift */; };
 		8B5C90DD25D1C69400F9A86A /* CubeNavigatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5C90DC25D1C69400F9A86A /* CubeNavigatorHelper.swift */; };
+		8B76C4102677552200732C61 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B76C40F2677552200732C61 /* TextStyle.swift */; };
 		8B79EEF225EE30BE0029D3C1 /* OptionalNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79EEF125EE30BE0029D3C1 /* OptionalNavigationLink.swift */; };
 		8B8418D925CE80BA00152F7E /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8418D825CE80BA00152F7E /* Polygon.swift */; };
 		8B8418F325CF11DB00152F7E /* WebstoryzSDK.framework in Sources */ = {isa = PBXBuildFile; fileRef = 8B8EDF8025CC7A7800ABE440 /* WebstoryzSDK.framework */; };
@@ -107,6 +108,7 @@
 		8B3AF81B25CF348F006F7DFE /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
 		8B3BDE4525D176D700D5BC5E /* CubeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeNavigation.swift; sourceTree = "<group>"; };
 		8B5C90DC25D1C69400F9A86A /* CubeNavigatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeNavigatorHelper.swift; sourceTree = "<group>"; };
+		8B76C40F2677552200732C61 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		8B79EEF125EE30BE0029D3C1 /* OptionalNavigationLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalNavigationLink.swift; sourceTree = "<group>"; };
 		8B8418D825CE80BA00152F7E /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		8B847FAF25DDB03300669562 /* UiNavControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UiNavControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +322,7 @@
 				8B8C6F3C25D7EFAB009AAAFC /* ImageLoader.swift */,
 				8B8C6F4825D82B27009AAAFC /* AnyShape.swift */,
 				8B12FB1F2605E64000C19D28 /* OptionalButton.swift */,
+				8B76C40F2677552200732C61 /* TextStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				8B8418D925CE80BA00152F7E /* Polygon.swift in Sources */,
 				8BE4560325D398E1001BAD5C /* Network.swift in Sources */,
 				8B3AF81C25CF348F006F7DFE /* StoryModel.swift in Sources */,
+				8B76C4102677552200732C61 /* TextStyle.swift in Sources */,
 				8B8C6F3725D6F30C009AAAFC /* WebView.swift in Sources */,
 				8B79EEF225EE30BE0029D3C1 /* OptionalNavigationLink.swift in Sources */,
 			);
