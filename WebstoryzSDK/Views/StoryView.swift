@@ -23,26 +23,33 @@ struct StoryView: View {
         self.helper.currentScreenIndex = startIndex
         self.helper.initPosition = CGFloat(-startIndex) * screenSize
         self.stories = stories
+        
     }
     
     var body: some View {
         NavigationView {
-            CubeNavigator(pages: stories, helper: self.helper, containerSize: UIScreen.main.bounds.size) { story in
-                    ZStack(
-                        alignment: Alignment(
-                            horizontal: HorizontalAlignment.leading,
-                            vertical: VerticalAlignment.top
-                        )
-                    ) {
-                        WebView(request: URLRequest(url: URL(string: story.url!)!))
-                        Image(systemName: "xmark")
-                            .font(.system(size: 30))
-                            .offset(x: 20, y: 30)
-                            .onTapGesture {
-                                self.mode.wrappedValue.dismiss()
-                            }
-                    }
-                .background(Color.black)
+            GeometryReader { geometry in
+                CubeNavigator(pages: stories, helper: self.helper, containerSize: UIScreen.main.bounds.size) { story in
+                        ZStack(
+                            alignment: Alignment(
+                                horizontal: HorizontalAlignment.leading,
+                                vertical: VerticalAlignment.top
+                            )
+                        ) {
+                            WebView(request: URLRequest(url: URL(string: story.url!)!), moveNext: {
+                                self.shiftRight(geometry: geometry)
+                            })
+                            Image(systemName: "xmark")
+                                .font(.system(size: 30))
+                                .offset(x: 20, y: 30)
+                                .onTapGesture {
+                                    self.mode.wrappedValue.dismiss()
+                                }
+                        }
+                    .background(Color.black)
+                    
+                }
+
                 
             }
             .navigationBarTitle("", displayMode: .inline)
