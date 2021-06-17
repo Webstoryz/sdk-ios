@@ -121,7 +121,7 @@ struct CubeNavigator <Content, Pages> : View where Content: View, Pages: RandomA
         self.helper.lastTranslation = self.helper.translation?.width ?? 0
             withAnimation {
                 //left
-                if( self.helper.translation!.width > CGFloat(containerSize.width/2)) {
+                if( self.helper.translation!.width > 0) {
                     //checking is it on the edge
                     if ( self.helper.initPosition < 0) {
                         self.helper.translation = CGSize(width: containerSize.width, height: 0)
@@ -132,16 +132,16 @@ struct CubeNavigator <Content, Pages> : View where Content: View, Pages: RandomA
                     
                 }
                 //right
-                else
+                else {
                     //checking is it on the edge
-                if ( self.helper.translation!.width < CGFloat(-containerSize.width/2)) && (abs( self.helper.initPosition) < containerSize.width*CGFloat(offsets.count-1)) {
+                if (abs( self.helper.initPosition) < containerSize.width*CGFloat(offsets.count-1)) {
                         
                     self.helper.translation = CGSize(width: -containerSize.width, height: 0)
                     self.helper.shiftLeft = true
-                    } else {
-                        self.helper.translation = .zero
+                } else {
+                    self.helper.translation = .zero
                 }
-                
             }
+        }
     }
 }
