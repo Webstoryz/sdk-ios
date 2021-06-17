@@ -10,18 +10,21 @@ import WebKit
 
 struct WebView : UIViewRepresentable {
     
-    let request: URLRequest
     let moveNext: () -> Void
     
     let id: UUID = UUID()
     
-    let webView = SDKWebView()
+    let webView: SDKWebView
+    
+    init(webView:SDKWebView, moveNext: @escaping () -> Void) {
+        self.webView = webView
+        self.moveNext = moveNext
+    }
     
     func makeUIView(context: Context) -> WKWebView  {
         webView.setMoveNext {
             self.moveNext()
         }
-        webView.load(request)
         return webView
     }
     
@@ -32,9 +35,12 @@ struct WebView : UIViewRepresentable {
 
 class SDKWebView: WKWebView, WKScriptMessageHandler {
     
-    var moveNext: () -> Void = {}
+    var moveNext: (() -> Void)?
     
     func setMoveNext(moveNext: @escaping () -> Void) -> Void {
+        if self.moveNext != nil {
+            return
+        }
         self.moveNext = moveNext
         self.configuration.userContentController = WKUserContentController()
         self.configuration.userContentController.add(self, name: "moving")
@@ -42,7 +48,7 @@ class SDKWebView: WKWebView, WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "moveNext" {
-            self.moveNext()
+            self.moveNext!()
         }
     }
 }

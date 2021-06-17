@@ -87,8 +87,11 @@ struct CubeNavigator <Content, Pages> : View where Content: View, Pages: RandomA
     
     var body: some View {
         self.bodyHelper(containerSize: self.containerSize, offsets: self.getOffsets(size: containerSize.width))
-        .background(Color.black)
-        .preferredColorScheme(.dark)
+            .background(Color.black)
+            .preferredColorScheme(.dark)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                self.endAnimation(containerSize: containerSize, offsets: getOffsets(size: containerSize.width))
+            }
     }
     
     private func bodyHelper(containerSize: CGSize, offsets: [Pages.Element.ID: (position: CGFloat, rotation: CGFloat)]) -> some View {

@@ -14,8 +14,9 @@ struct StoryView: View {
     
     
     let stories: [StoryModel]
-    var helper = CubeNavigatorHelper()
+    let helper = CubeNavigatorHelper()
     let delay = 0.4
+    var wvs: [String: SDKWebView] = [:]
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -23,7 +24,11 @@ struct StoryView: View {
         self.helper.currentScreenIndex = startIndex
         self.helper.initPosition = CGFloat(-startIndex) * screenSize
         self.stories = stories
-        
+        for story in stories {
+            let sdkWebView  = SDKWebView()
+            sdkWebView.load(URLRequest(url: URL(string: story.url!)!))
+            wvs[story.id!] = sdkWebView
+        }
     }
     
     var body: some View {
@@ -36,7 +41,7 @@ struct StoryView: View {
                                 vertical: VerticalAlignment.top
                             )
                         ) {
-                            WebView(request: URLRequest(url: URL(string: story.url!)!), moveNext: {
+                            WebView(webView: wvs[story.id!]!, moveNext: {
                                 self.shiftRight(geometry: geometry)
                             })
                             Image(systemName: "xmark")
@@ -49,8 +54,6 @@ struct StoryView: View {
                     .background(Color.black)
                     
                 }
-
-                
             }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
