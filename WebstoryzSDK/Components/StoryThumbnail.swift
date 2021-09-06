@@ -54,6 +54,7 @@ internal struct StoryThumbnail: View {
                                             }
                                             if form.captionInside {
                                                 Text(caption).styled(style: captionStyle)
+                                                    .padding(4)
                                             }
                                         }
                                     )
