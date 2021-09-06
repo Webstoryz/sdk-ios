@@ -15,7 +15,9 @@ struct ContentView: View {
                 VStack {
                     Rectangle().frame(width: 200, height: 200, alignment:   .center)
                     
-                        SDK.thumbs(key:"LDLGjIR8GzycQCt14yC1SyPGUGuAvrRQtQm9io58dnYOcGRAmo0hO5vVRIizk3Oeu62aktawVDl8r8kMyJT2mkqPjyvUdirLAAoCnKDD0NVQpEt3PfhfH5YFujExi5oh")
+                    SDK.thumbs(key:"LDLGjIR8GzycQCt14yC1SyPGUGuAvrRQtQm9io58dnYOcGRAmo0hO5vVRIizk3Oeu62aktawVDl8r8kMyJT2mkqPjyvUdirLAAoCnKDD0NVQpEt3PfhfH5YFujExi5oh", onLoadFailed: {
+
+                    } )
                 .padding([.top, .bottom])
                 .padding(.bottom, 32)
                     Rectangle().frame(width: 200, height: 200, alignment:   .center)

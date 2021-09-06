@@ -32,7 +32,7 @@ internal struct StoryThumbnail: View {
     var body: some View {
         OptionalButton(
             child: AnyView(
-                VStack {
+                VStack(spacing: 0) {
                     form.overlay
                         .foregroundColor(WebstoryzColors.borderColor)
                         .frame(width: form.width+5, height: form.heigth+5, alignment: .center)
@@ -42,7 +42,7 @@ internal struct StoryThumbnail: View {
                                     .cornerRadius(form.cornerRadius)
                                     .foregroundColor(.white)
                                     .overlay(
-                                        ZStack {
+                                        ZStack(alignment: .bottomLeading) {
                                         Image(uiImage: image)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)

@@ -16,19 +16,22 @@ internal struct ThumbnailBlock: View {
     var controller: UIViewController?
     var callback: () -> Void?
     var captionStyle, headerStyle: TextStyle
+    var onLoadFailed: () -> Void
     
-    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle) {
+    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
+        self.onLoadFailed = onLoadFailed
         self.callback =  { return }
         self.request()
     }
     
-    init(key: String,controller: UIViewController, headerStyle: TextStyle, captionStyle: TextStyle) {
+    init(key: String,controller: UIViewController, headerStyle: TextStyle, captionStyle: TextStyle, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
+        self.onLoadFailed = onLoadFailed
         self.controller = controller
         self.callback =  { return }
         self.request()
@@ -40,10 +43,14 @@ internal struct ThumbnailBlock: View {
     
     func request()  {
         try! Network.getThumbsData(key:key, callback: { storyModel in
-            model.form = getFormFromString(style: storyModel.data?.style ?? "")
-            model.loading = false
-            model.title = storyModel.data?.title ?? ""
-            model.thumbs  = storyModel.data?.stories ?? []
+            DispatchQueue.main.sync {
+                model.form = getFormFromString(style: storyModel.data?.style ?? "")
+                model.loading = false
+                model.title = storyModel.data?.title ?? ""
+                model.thumbs  = storyModel.data?.stories ?? []
+            }
+        }, errorCallback: {
+            onLoadFailed()
         })
     }
     
@@ -93,7 +100,6 @@ internal struct ThumbnailBlock: View {
                                                         isButton: self.controller != nil,
                                                         captionStyle: self.captionStyle,
                                                         onPressed: {
-                                                            
                                                             let viewCtr = UIHostingController(rootView: StoryView(startIndex: model.thumbs.lastIndex(where: { val in
                                                                 return val.id == thumb.id
                                                             }) ?? 0, screenSize: 375, stories: model.thumbs ))

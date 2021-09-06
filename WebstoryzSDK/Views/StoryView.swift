@@ -41,7 +41,7 @@ struct StoryView: View {
                                 vertical: VerticalAlignment.top
                             )
                         ) {
-                            WebView(webView: wvs[story.id!]!, moveNext: {
+                            WebViewWrapper(webView: wvs[story.id!]!, moveNext: {
                                 self.shiftRight(geometry: geometry)
                             })
                             Image(systemName: "xmark")
