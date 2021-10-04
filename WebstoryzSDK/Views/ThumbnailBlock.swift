@@ -17,21 +17,24 @@ internal struct ThumbnailBlock: View {
     var callback: () -> Void?
     var captionStyle, headerStyle: TextStyle
     var onLoadFailed: () -> Void
+    var leadingPadding: Int
     
-    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle, onLoadFailed: @escaping () -> Void) {
+    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle,leadingPadding: Int, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
         self.onLoadFailed = onLoadFailed
+        self.leadingPadding = leadingPadding
         self.callback =  { return }
         self.request()
     }
     
-    init(key: String,controller: UIViewController, headerStyle: TextStyle, captionStyle: TextStyle, onLoadFailed: @escaping () -> Void) {
+    init(key: String,controller: UIViewController, headerStyle: TextStyle,leadingPadding: Int, captionStyle: TextStyle, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
         self.onLoadFailed = onLoadFailed
+        self.leadingPadding = leadingPadding
         self.controller = controller
         self.callback =  { return }
         self.request()
@@ -84,6 +87,8 @@ internal struct ThumbnailBlock: View {
                                 showsIndicators: false,
                                 content: {
                                     HStack {
+                                        Spacer()
+                                            .frame(width: CGFloat(leadingPadding))
                                         ForEach(model.thumbs, id: \.uuid) { thumb in
                                             OptionalNavigationLink(
                                                 isActive: self.controller == nil,
