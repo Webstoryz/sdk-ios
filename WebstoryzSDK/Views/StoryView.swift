@@ -44,12 +44,9 @@ struct StoryView: View {
                             WebViewWrapper(webView: wvs[story.id!]!, moveNext: {
                                 self.shiftRight(geometry: geometry)
                             })
-                            Image(systemName: "xmark")
-                                .font(.system(size: 30))
-                                .offset(x: 20, y: 30)
-                                .onTapGesture {
-                                    self.mode.wrappedValue.dismiss()
-                                }
+                            CloseButton(onTap: {
+                                self.mode.wrappedValue.dismiss()
+                            })
                         }
                     .background(Color.black)
                     
