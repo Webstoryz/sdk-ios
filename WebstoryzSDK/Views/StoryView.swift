@@ -41,6 +41,7 @@ struct StoryView: View {
                                 vertical: VerticalAlignment.top
                             )
                         ) {
+                            Color.black.edgesIgnoringSafeArea(.all)
                             WebViewWrapper(webView: wvs[story.id!]!, moveNext: {
                                 self.shiftRight(geometry: geometry)
                             })
