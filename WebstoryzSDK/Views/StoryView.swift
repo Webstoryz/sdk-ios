@@ -33,29 +33,31 @@ struct StoryView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                CubeNavigator(pages: stories, helper: self.helper, containerSize: UIScreen.main.bounds.size) { story in
-                        ZStack(
-                            alignment: Alignment(
-                                horizontal: HorizontalAlignment.leading,
-                                vertical: VerticalAlignment.top
-                            )
-                        ) {
-                            Color.black.edgesIgnoringSafeArea(.all)
-                            WebViewWrapper(webView: wvs[story.id!]!, moveNext: {
-                                self.shiftRight(geometry: geometry)
-                            })
-                            CloseButton(onTap: {
-                                self.mode.wrappedValue.dismiss()
-                            })
-                        }
-                    .background(Color.black)
-                    
+            ZStack {
+                Color.black.edgesIgnoringSafeArea(.all)
+                GeometryReader { geometry in
+                    CubeNavigator(pages: stories, helper: self.helper, containerSize: UIScreen.main.bounds.size) { story in
+                            ZStack(
+                                alignment: Alignment(
+                                    horizontal: HorizontalAlignment.leading,
+                                    vertical: VerticalAlignment.top
+                                )
+                            ) {
+                                WebViewWrapper(webView: wvs[story.id!]!, moveNext: {
+                                    self.shiftRight(geometry: geometry)
+                                })
+                                CloseButton(onTap: {
+                                    self.mode.wrappedValue.dismiss()
+                                })
+                            }
+                        .background(Color.black)
+                        
+                    }
                 }
+                .navigationViewStyle(StackNavigationViewStyle())
+                .navigationBarTitle("", displayMode: .inline)
+                .navigationBarHidden(true)
             }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("", displayMode: .inline)
