@@ -18,24 +18,27 @@ internal struct ThumbnailBlock: View {
     var captionStyle, headerStyle: TextStyle
     var onLoadFailed: () -> Void
     var leadingPadding: Int
+    var showHeader: Bool
     
-    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle,leadingPadding: Int, onLoadFailed: @escaping () -> Void) {
+    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle,leadingPadding: Int,showHeader: Bool, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
         self.onLoadFailed = onLoadFailed
         self.leadingPadding = leadingPadding
+        self.showHeader = showHeader
         self.callback =  { return }
         self.request()
     }
     
-    init(key: String,controller: UIViewController, headerStyle: TextStyle,leadingPadding: Int, captionStyle: TextStyle, onLoadFailed: @escaping () -> Void) {
+    init(key: String,controller: UIViewController, headerStyle: TextStyle,leadingPadding: Int, captionStyle: TextStyle,showHeader: Bool, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
         self.onLoadFailed = onLoadFailed
         self.leadingPadding = leadingPadding
         self.controller = controller
+        self.showHeader = showHeader
         self.callback =  { return }
         self.request()
     }
@@ -78,7 +81,7 @@ internal struct ThumbnailBlock: View {
         } else {
             ViewBuilder.buildBlock(
                         VStack(alignment: .leading) {
-                            if self.model.title != "" {
+                            if self.model.title != "" && showHeader {
                                 Text(self.model.title)
                                     .styled(style: headerStyle)
                             }

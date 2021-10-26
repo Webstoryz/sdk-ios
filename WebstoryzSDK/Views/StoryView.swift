@@ -52,9 +52,11 @@ struct StoryView: View {
                     
                 }
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(true)
     }
