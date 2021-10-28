@@ -16,10 +16,11 @@ internal struct StoryThumbnail: View {
     var isButton: Bool
     var onPressed: () -> Void
     var captionStyle: TextStyle
+    var captionType: CaptionType
     @ObservedObject var imageLoader: ImageLoader
     @State var image: UIImage = UIImage()
     
-    init(form: StoryThumbnailForm, caption: String, url: String, isButton: Bool,captionStyle: TextStyle, onPressed: @escaping () -> Void) {
+    init(form: StoryThumbnailForm, caption: String, url: String, isButton: Bool,captionStyle: TextStyle,captionType: CaptionType, onPressed: @escaping () -> Void) {
         self.form = form
         self.captionStyle = captionStyle
         self.caption = caption
@@ -27,6 +28,7 @@ internal struct StoryThumbnail: View {
         self.imageLoader = ImageLoader(urlString: url)
         self.isButton = isButton
         self.onPressed = onPressed
+        self.captionType = captionType
     }
     
     var body: some View {
@@ -52,14 +54,14 @@ internal struct StoryThumbnail: View {
                                             .onReceive(imageLoader.didChange) { data in
                                                 self.image = UIImage(data: data) ?? UIImage()
                                             }
-                                            if form.captionInside {
+                                            if captionType == .inside {
                                                 Text(caption).styled(style: captionStyle)
                                                     .padding(4)
                                             }
                                         }
                                     )
                                 )
-                    if !form.captionInside {
+                    if captionType == .outside {
                         Text(caption).styled(style: captionStyle)
                             .frame(maxWidth: form.width+3)
                     }

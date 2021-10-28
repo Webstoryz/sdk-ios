@@ -95,15 +95,4 @@ internal extension StoryThumbnailForm {
         return UUID()
     }
     
-    var captionInside: Bool {
-        switch self {
-        case .circle:
-            return false
-        case .polygon(_):
-            return false
-        default:
-            return true
-        }
-    }
-    
 }

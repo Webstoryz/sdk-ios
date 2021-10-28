@@ -19,26 +19,32 @@ internal struct ThumbnailBlock: View {
     var onLoadFailed: () -> Void
     var leadingPadding: Int
     var showHeader: Bool
+    var captionType: CaptionType
+    var backgroundColor: Color
     
-    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle,leadingPadding: Int,showHeader: Bool, onLoadFailed: @escaping () -> Void) {
+    init(key: String, headerStyle: TextStyle, captionStyle: TextStyle,leadingPadding: Int,showHeader: Bool,captionType: CaptionType,backgroundColor: Color, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
         self.onLoadFailed = onLoadFailed
         self.leadingPadding = leadingPadding
         self.showHeader = showHeader
+        self.backgroundColor = backgroundColor
+        self.captionType = captionType
         self.callback =  { return }
         self.request()
     }
     
-    init(key: String,controller: UIViewController, headerStyle: TextStyle,leadingPadding: Int, captionStyle: TextStyle,showHeader: Bool, onLoadFailed: @escaping () -> Void) {
+    init(key: String,controller: UIViewController, headerStyle: TextStyle,leadingPadding: Int, captionStyle: TextStyle,showHeader: Bool,captionType: CaptionType,backgroundColor: Color, onLoadFailed: @escaping () -> Void) {
         self.captionStyle = captionStyle
         self.headerStyle = headerStyle
         self.key = key
         self.onLoadFailed = onLoadFailed
         self.leadingPadding = leadingPadding
+        self.captionType = captionType
         self.controller = controller
         self.showHeader = showHeader
+        self.backgroundColor = backgroundColor
         self.callback =  { return }
         self.request()
     }
@@ -77,7 +83,13 @@ internal struct ThumbnailBlock: View {
     @ViewBuilder
     var body: some View {
         if self.model.loading {
-            ViewBuilder.buildBlock(ActivityIndicator(isAnimating: .constant(true), style: .medium).background(Color.white).frame(height: 172))
+            ViewBuilder.buildBlock(
+                HStack {
+                    Spacer()
+                    ActivityIndicator(isAnimating: .constant(true), style: .medium).background(Color.white).frame(height: 172)
+                    Spacer()
+                }
+            )
         } else {
             ViewBuilder.buildBlock(
                         VStack(alignment: .leading) {
@@ -107,6 +119,7 @@ internal struct ThumbnailBlock: View {
                                                         url: thumb.thumbUrl ?? "",
                                                         isButton: self.controller != nil,
                                                         captionStyle: self.captionStyle,
+                                                        captionType: self.captionType,
                                                         onPressed: {
                                                             let viewCtr = UIHostingController(rootView: StoryView(startIndex: model.thumbs.lastIndex(where: { val in
                                                                 return val.id == thumb.id
@@ -125,7 +138,7 @@ internal struct ThumbnailBlock: View {
                                 }
                             )
                     }
-                .background(Color.white)
+                .background(backgroundColor)
                 .frame(height: 170)
                 )
             }
