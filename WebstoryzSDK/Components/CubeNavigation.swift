@@ -121,7 +121,7 @@ struct CubeNavigator <Content, Pages> : View where Content: View, Pages: RandomA
         self.helper.lastTranslation = self.helper.translation?.width ?? 0
             withAnimation {
                 //left
-                if( self.helper.translation!.width > 0) {
+                if( self.helper.translation?.width ?? 0 > 0) {
                     //checking is it on the edge
                     if ( self.helper.initPosition < 0) {
                         self.helper.translation = CGSize(width: containerSize.width, height: 0)
