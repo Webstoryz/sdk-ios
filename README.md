@@ -18,13 +18,13 @@ var body: some View {
 ```
 Во втором случае в SDK предоставляется функция 
 ```swift 
-  SDK.thumbs(key: "ваш ключ к апи",uiController: *Родительский UIViewController*, onLoadFailed: {
+  SDK.thumbsVC(key: "ваш ключ к апи",uiController: *Родительский UIViewController*, onLoadFailed: {
     функция, вызывающаяся, если что-то пойдет не так
   })
 
 ```
 
-В sdk используются внутренние функциональные элементы, которые можно задавать в конструкторе
+В SDK используются внутренние функциональные элементы, которые можно задавать в конструкторе
 ```swift
 struct TextStyle {
   var color: Color
