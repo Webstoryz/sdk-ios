@@ -52,6 +52,8 @@ internal struct StoryThumbnail: View {
                                             .clipShape(form.shape())
                                             .cornerRadius(form.cornerRadius)
                                             .onReceive(imageLoader.didChange) { data in
+                                                print("received data for image \(self.caption)")
+                                                print("from url \(self.url)")
                                                 self.image = UIImage(data: data) ?? UIImage()
                                             }
                                             if captionType == .inside {
