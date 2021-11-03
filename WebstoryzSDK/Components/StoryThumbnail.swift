@@ -21,8 +21,6 @@ internal struct StoryThumbnail: View {
     @State var image: UIImage = UIImage()
     
     init(form: StoryThumbnailForm, caption: String, url: String, isButton: Bool,captionStyle: TextStyle,captionType: CaptionType, onPressed: @escaping () -> Void) {
-        print("initing image with caption \(caption)")
-        print("requesting from url \(url)")
         self.form = form
         self.captionStyle = captionStyle
         self.caption = caption
@@ -54,8 +52,6 @@ internal struct StoryThumbnail: View {
                                             .clipShape(form.shape())
                                             .cornerRadius(form.cornerRadius)
                                             .onReceive(imageLoader.didChange) { data in
-                                                print("received data for image \(self.caption)")
-                                                print("from url \(self.url)")
                                                 self.image = UIImage(data: data) ?? UIImage()
                                             }
                                             if captionType == .inside {
@@ -69,6 +65,9 @@ internal struct StoryThumbnail: View {
                         Text(caption).styled(style: captionStyle)
                             .frame(maxWidth: form.width+3)
                     }
+                }
+                .onAppear {
+                    self.imageLoader.load()
                 }
             ),
             isActive: isButton,
