@@ -13,7 +13,7 @@ struct ContentView: View {
         NavigationView {
             TabView {
                 VStack {
-                    SDK.thumbs(key:"ncRB9a9SJvcpARGHY5EiWUfWDf09oKJMX0REOfyUFDZxqL0OUjFzzyqZlABlvGzt2jQwxjQN5zBZftnXLGAIKjSN6pcjLakIYM8C4jTxDXM6uVDaLVLFdIQEnsC5a18k", onLoadFailed: {
+                    SDK.thumbs(key:"rlvs9F5zNhfTdjSLHdVgcFNDk7aXpAwq3CeXQsHICEIokQYXYJxayMFgD1A6vmmtMfsxQFmLXRGj1b9HN2nbW6CWjtL75q75WWHxfqXdtImYaC9nG2OG5VVGuoUR2YJJ", onLoadFailed: {
                     } )
                 }}
         }

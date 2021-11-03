@@ -33,11 +33,12 @@ struct WebViewWrapper : UIViewRepresentable {
     
 }
 
-class SDKWebView: WKWebView, WKScriptMessageHandler {
+class SDKWebView: WKWebView, WKScriptMessageHandler, WKNavigationDelegate {
     
     var moveNext: (() -> Void)?
     
     func setMoveNext(moveNext: @escaping () -> Void) -> Void {
+        self.navigationDelegate = self
         if self.moveNext != nil {
             return
         }
@@ -51,4 +52,12 @@ class SDKWebView: WKWebView, WKScriptMessageHandler {
             self.moveNext!()
         }
     }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        decisionHandler(.cancel)
+        if let newURL = navigationAction.request.url, UIApplication.shared.canOpenURL(newURL) {
+            UIApplication.shared.open(newURL)
+        }
+    }
+    
 }
