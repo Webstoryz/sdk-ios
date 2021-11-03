@@ -21,6 +21,8 @@ internal struct StoryThumbnail: View {
     @State var image: UIImage = UIImage()
     
     init(form: StoryThumbnailForm, caption: String, url: String, isButton: Bool,captionStyle: TextStyle,captionType: CaptionType, onPressed: @escaping () -> Void) {
+        print("initing image with caption \(caption)")
+        print("requesting from url \(url)")
         self.form = form
         self.captionStyle = captionStyle
         self.caption = caption

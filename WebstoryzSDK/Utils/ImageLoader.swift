@@ -17,10 +17,18 @@ class ImageLoader: ObservableObject {
     }
 
     init(urlString:String) {
-        guard let url = URL(string: urlString) else { return }
+        print("requesting \(urlString)")
+        guard let url = URL(string: urlString) else {
+            print("invalid url \(urlString)")
+            return
+        }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
+            guard let data = data else {
+                print("no data received for ulr \(urlString)")
+                return
+            }
             DispatchQueue.main.async {
+                print("successfully received data on url \(urlString)")
                 self.data = data
             }
         }
