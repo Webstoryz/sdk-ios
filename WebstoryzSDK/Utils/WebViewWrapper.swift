@@ -55,7 +55,7 @@ class SDKWebView: WKWebView, WKScriptMessageHandler, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.cancel)
-        if let newURL = navigationAction.request.url, UIApplication.shared.canOpenURL(newURL) {
+        if let newURL = navigationAction.request.url, UIApplication.shared.canOpenURL(newURL), !(url?.absoluteString.contains("apiwidget.webstoryz.com/2.0/widget-story") ?? false) {
             UIApplication.shared.open(newURL)
         }
     }
